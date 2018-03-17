@@ -1,3 +1,9 @@
+{%if request.COOKIES.datos%}
+	{{request.COOKIES.datos}}
+
+	{{request.COOKIES.datos.Curp}}
+
+{%endif%}
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
@@ -21,6 +27,8 @@
 	{% endblock %}
 
 	{% block contenido %}
+		<p> puesto {{puesto}}</p>
+		<p> Datos personales {{datos}}</p>
 	{% endblock %}	
 
 	{% block mas_contenido %}

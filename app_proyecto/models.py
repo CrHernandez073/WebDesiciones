@@ -7,7 +7,7 @@ class PuestoEmpleado(models.Model):
 	Nombre = models.CharField(max_length = 150)
 
 	def __str__(self):
-		return  self.IdPuesto
+		return  self.Nombre
 
 class Personas(models.Model):
 	Curp = models.CharField(max_length = 20, primary_key = True)
@@ -42,15 +42,16 @@ class DireccionPersonas(models.Model):
 	Num_Exterior = models.CharField(max_length = 30)
 
 	def __str__(self):
-		return  self.Curp
+		return  self.Curp.Curp
 
 class Empleados(models.Model):
 	No_Empleado = models.AutoField(primary_key=True) #autoincrementable
 	Curp = models.ForeignKey('Personas', on_delete = models.CASCADE,)
 	Id_Puesto = models.ForeignKey( 'PuestoEmpleado', on_delete = models.CASCADE,)
+	contraseña = models.CharField(max_length=50)
 
 	def __str__(self):
-		return  self.No_Empleado
+		return str(self.No_Empleado)
 
 class AreasTrabajo(models.Model):
 	Id_Area = models.CharField(max_length = 20, primary_key = True)

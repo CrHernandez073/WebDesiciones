@@ -5,4 +5,8 @@ from django.contrib.auth.views import login, logout_then_login
 
 urlpatterns = [
     path('admin/', admin.site.urls), #Administraciòn por defecto
+
+    #Página de inicio.
+    #path('', views.inicio),
+     path('', views.inicio, name = 'inicio'), #Iniciar sesiòn
 ]

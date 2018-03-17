@@ -124,6 +124,6 @@ STATICFILES_DIRS = [
 
 from django.urls import reverse_lazy
 
-LOGIN_URL = reverse_lazy('autenticarme') #Pag. para iniciar sesion
-LOGIN_REDIRECT_URL = reverse_lazy('inicio') #Llevar a inicio cuando inicia sesiòn
+LOGIN_URL = reverse_lazy('inicio') #Pag. para iniciar sesion
+LOGIN_REDIRECT_URL = reverse_lazy('bienvenido') #Llevar a inicio cuando inicia sesiòn
 logout_url = reverse_lazy('salir') #Salir de la sesion
