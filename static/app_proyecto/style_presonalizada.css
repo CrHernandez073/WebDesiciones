@@ -1,0 +1,13 @@
+body {
+	display:  flex;
+	min-height: 100vh;
+	flex-wrap: wrap;
+}
+
+footer {
+	background-color: #004d40;
+	color: white;
+	line-height:4;
+	align-self: flex-end;
+	width: 100%;
+}
