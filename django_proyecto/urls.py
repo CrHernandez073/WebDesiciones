@@ -1,14 +1,17 @@
 from django.contrib import admin
 from django.urls import path
 from app_proyecto import views
-from django.contrib.auth.views import login, logout_then_login
 
 urlpatterns = [
     path('admin/', admin.site.urls), #Administraciòn por defecto
 
-    #Página de inicio.
-    #path('', views.inicio),
-    path('', views.inicio, name = 'inicio'), #Iniciar sesiòn
+    #LINKS DE SESIÓN
+    path('login/', views.login, name = 'login'), #Iniciar sesiòn
     path('salir/', views.logout, name = 'salir'),
-    path('gerente/', views.inicio_gerente, name = 'inicio_gerente'),
+
+    #LINKS DEL GERENTE
+    path('inicio_gerente/', views.inicio_gerente, name = 'inicio_gerente'),
+    path('consulta_empleados/', views.consulta_empleados.as_view(), name = 'consulta_empleados'),
+    path('consulta_supervisores/', views.consulta_supervisores.as_view(), name = 'consulta_supervisores'),
+    path('consulta_gerentes/', views.consulta_gerentes.as_view(), name = 'consulta_gerentes'),
 ]

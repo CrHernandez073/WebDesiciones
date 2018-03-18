@@ -1,4 +1,6 @@
 {% load static %}
+{%block condiciones%}
+{% endblock %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,10 +14,15 @@
 	{% endblock %}	
 </head>
 <body>
+	{% block nav_dropdowns %}
+	{% endblock %}	
 	{% block navbar %}
 		<nav class="teal darken-4">
 			<div class="nav-wrapper">
 				<a class="brand-logo center">{% block titulo_navbar %}Archivo base{% endblock %}</a>
+				{% block nav_contenido %}
+
+				{% endblock %}				
 			</div>
 		</nav>
 	{% endblock %}
@@ -38,6 +45,12 @@
 	{% block javascrip %}
 	<script src="{% static 'app_proyecto/jquery-3.2.1.min.js' %}"></script>
 	<script src="{% static 'app_proyecto/materialize/js/materialize.min.js' %}"></script>
+	<script>
+		  $(document).ready(function() {
+	     	// Initialize collapse button
+  			$(".button-collapse").sideNav();
+		  });
+	</script>
 	{% endblock %}	
 </body>
 </html>

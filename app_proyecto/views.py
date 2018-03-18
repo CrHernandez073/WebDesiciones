@@ -1,74 +1,56 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.views.generic.list import ListView
 
 from app_proyecto import models
 # Create your views here.
 
-def inicio(request):
+def login(request):
 
+	#SE EJECUTARÁ ESTA ACCION SI SE ACCEDE A LA PAGINA DEL MODO POST
 	if request.method == "POST":
-		
-		curp = request.POST["username"]
-		password = request.POST["password"]
+		#Obtiene los elementos de la base de datos
+		datos = models.Empleados.objects.get(Curp=request.POST.get('f_curp'))
+		if datos.contraseña == request.POST.get('f_contraseña'):
 
-		existe = models.Empleados.objects.filter(Curp = curp, contraseña = password).count()
-
-		if existe > 0:
-			v_idpuesto = models.Empleados.objects.filter(Curp = curp).values_list("Id_Puesto")
-			datos_personales = models.Personas.objects.filter(Curp = curp).values()
-
-			request.session['curp']=curp
-			request.session['puesto']="gerente"
-
-			return redirect('inicio_gerente')
-
-		else:
-			return render(request, 'app_proyecto/inicio.html')
+			#SE CREAN VARIABLES DE SESION
+			request.session['curp'] = str(datos.Curp)
+			request.session['id_puesto'] = str(datos.Id_Puesto)
+	
+			if str(datos.Id_Puesto) == "Empleado":
+				return redirect('inicio_gerente')
+			elif str(datos.Id_Puesto == "Supervisor"):
+				return redirect('inicio_gerente')
+			elif str(datos.Id_Puesto == "Gerente"):
+				return redirect('inicio_gerente')
+	
+	#EL USUARIO TIPEÓ LA URL
 	else:
-		return render(request, 'app_proyecto/inicio.html', {"curp": request.session.get("curp")})
-		
+		return render(request, 'app_proyecto/login.html')
 
-
-
-
-
-
-		
 
 def logout(request):
+    #SE DESTRUYEN LAS VARIABLES DE SESION
     try:
         del request.session['curp']
-        del request.session['puesto']
+        del request.session['id_puesto']
     except KeyError:
         pass
-    return redirect('inicio')
+	#DESPUES DE DESTRUIR LAS VARIABLES DE SESIÓN, TE REDIGIRÁ A LA URL QUE TENGA EL NOMBRE "login"
+    return redirect('login')
 
+# ENLACES DEL GERENTE!
 def inicio_gerente(request):
-	return render(request, 'app_proyecto/gerente/index.html', {"curp": request.session.get("curp")})	
+	return render(request, 'app_proyecto/gerente/index.html')
 
+class consulta_empleados(ListView):
+    template_name= "app_proyecto/gerente/consulta_empleados.html"
+    queryset = models.Empleados.objects.filter(Id_Puesto = 0)
 
+class consulta_supervisores(ListView):
+    template_name= "app_proyecto/gerente/consulta_supervisores.html"
+    queryset = models.Empleados.objects.filter(Id_Puesto = 1)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# if v_idpuesto == 0:
-# 				response = render(request, 'app_proyecto/base.html', {"puesto": "Empleado normal", "datos" :datos_personales})
-# 			elif v_idpuesto == 1:
-# 				response = render(request, 'app_proyecto/base.html', {"puesto": "Supervisor", "datos" :datos_personales})
-# 			else:
-# 				response = render(request, 'app_proyecto/base.html', {"puesto": "Gerente", "datos" :datos_personales})
-
-# 			response.set_cookie("datos", datos_personales)
-# 			response.set_cookie("id_puesto", v_idpuesto)
-# 			return response
+class consulta_gerentes(ListView):
+    template_name= "app_proyecto/gerente/consulta_gerentes.html"
+    queryset = models.Empleados.objects.filter(Id_Puesto = 2)

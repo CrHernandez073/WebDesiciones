@@ -1,11 +1,13 @@
-{%if curp == None%}
-	<script>
-		window.location.replace("../salir");
-		close();
-	</script>
-{%else%}
-	<script>
-	</script>
-	<a href="../salir">Salir de la sesión</a>
-{%endif%}
+<!-- CARGA LOS BLOQUES DEL ARCHIVO BASE -->
+{% extends 'app_proyecto/gerente/base.html' %}
+
+<!-- SOBRESCRIBE LA ETIQUETA TITULO -->
+{% block titulo %}Principal{% endblock %} 
+
+{% block titulo_navbar %}{% endblock %}
+
+<!-- CONTENIDO DEL USUARIO VERSION MOVIL -->
+{% block contenido %}
+
+{% endblock %} 
 
