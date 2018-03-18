@@ -8,5 +8,7 @@ urlpatterns = [
 
     #Página de inicio.
     #path('', views.inicio),
-     path('', views.inicio, name = 'inicio'), #Iniciar sesiòn
+    path('', views.inicio, name = 'inicio'), #Iniciar sesiòn
+    path('salir/', views.logout, name = 'salir'),
+    path('gerente/', views.inicio_gerente, name = 'inicio_gerente'),
 ]
