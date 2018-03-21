@@ -1,5 +1,12 @@
 {% load static %}
 {%block condiciones%}
+{%if request.session.id_puesto  == "Gerente"%}
+		<script>window.location.replace("../inicio_gerente");</script>
+	{%elif request.session.id_puesto  == "Supervisor"%}
+		<script>alert("Es Supervisor")</script>
+	{%elif request.session.id_puesto  == "Empleado"%}
+		<script>alert("Es Empleado")</script>
+{%endif%}
 {% endblock %}
 <!DOCTYPE html>
 <html lang="es">
@@ -15,13 +22,24 @@
 </head>
 <body>
 	{% block nav_dropdowns %}
+	 <ul id="drop_solicitud_empleado" class="dropdown-content">
+        <li><a href="../form_persona">Datos Personales</a></li>
+        <li><a href="../form_persona_domicilio">Domicilio</a></li>
+     </ul>
+     <ul id="drop_examenes_puestos" class="dropdown-content">
+        <li><a href="../form_puesto_caja">Caja</a></li>
+     </ul>
 	{% endblock %}	
 	{% block navbar %}
 		<nav class="teal darken-4">
 			<div class="nav-wrapper">
 				<a class="brand-logo center">{% block titulo_navbar %}Archivo base{% endblock %}</a>
 				{% block nav_contenido %}
-
+				  <ul>
+				  	<li><a href="../login">Inicio</a></li>
+					<li><a class="dropdown-button" href="#!" data-activates="drop_solicitud_empleado"><i class="fas fa-chevron-circle-down fa-1x"></i>  Mi Registro</a></li>
+					<li><a class="dropdown-button" href="#!" data-activates="drop_examenes_puestos"><i class="fas fa-chevron-circle-down fa-1x"></i>  Pruebas</a></li>
+				  </ul>
 				{% endblock %}				
 			</div>
 		</nav>
@@ -31,6 +49,7 @@
 	{% endblock %}	
 
 	{% block mas_contenido %}
+
 	{% endblock %}	
 
 	{% block pie_pagina %}

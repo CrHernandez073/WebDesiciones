@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+
 from django.views.generic.list import ListView
 
 from app_proyecto import models
@@ -54,3 +57,16 @@ class consulta_supervisores(ListView):
 class consulta_gerentes(ListView):
     template_name= "app_proyecto/gerente/consulta_gerentes.html"
     queryset = models.Empleados.objects.filter(Id_Puesto = 2)
+
+#FORMULARIOS OBLIGATORIOS
+class form_persona(CreateView):
+    template_name= "app_proyecto/form_persona.html"
+    model = models.Personas
+    fields = "__all__"
+    success_url = reverse_lazy("login")
+
+class form_persona_domicilio(CreateView):
+    template_name= "app_proyecto/form_persona_domicilio.html"
+    model = models.DireccionPersonas
+    fields = "__all__"
+    success_url = reverse_lazy("login")

@@ -14,4 +14,9 @@ urlpatterns = [
     path('consulta_empleados/', views.consulta_empleados.as_view(), name = 'consulta_empleados'),
     path('consulta_supervisores/', views.consulta_supervisores.as_view(), name = 'consulta_supervisores'),
     path('consulta_gerentes/', views.consulta_gerentes.as_view(), name = 'consulta_gerentes'),
+
+#FORMULARIO
+   # 1.- Crear a la persona
+	path('form_persona/', views.form_persona.as_view(), name = 'form_persona'),
+	path('form_persona_domicilio/', views.form_persona_domicilio.as_view(), name = 'form_persona_domicilio'),
 ]
