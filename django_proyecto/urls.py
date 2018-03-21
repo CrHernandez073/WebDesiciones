@@ -19,4 +19,6 @@ urlpatterns = [
    # 1.- Crear a la persona
 	path('form_persona/', views.form_persona.as_view(), name = 'form_persona'),
 	path('form_persona_domicilio/', views.form_persona_domicilio.as_view(), name = 'form_persona_domicilio'),
+    path('form_caja/', views.form_caja.as_view(), name = 'form_caja'),
+    
 ]

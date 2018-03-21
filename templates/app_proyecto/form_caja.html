@@ -1,0 +1,129 @@
+{% extends 'app_proyecto/base.html' %}
+
+{% block titulo %}Caja{% endblock %} 
+
+{% block titulo_navbar %}caja{% endblock %}
+
+{% block contenido %}
+
+<div class="container" style="width: 50%;">
+	<form method="post" >
+	    {% csrf_token %}	 
+
+<div class="input-field col s12">
+	<select multiple>
+	    <option value="" disabled selected> 1.-Nivel de estudios </option>
+	    <option value="1">Secundaria</option>
+	    <option value="2">Preparatoria</option>
+	    <option value="3">Superior</option>
+	</select>
+</div>
+	<label> 1.-Nivel de estudios: </label>
+	<select class="browser-default">
+		<option value="" disabled selected>Seleccione una opción</option>
+	    <option value="1">Secundaria</option>
+	    <option value="2">Preparatoria</option>
+	    <option value="3">Superior</option>
+	</select>
+
+
+
+<div class="input-field col s12">
+	<select multiple>
+		<option value="" disabled selected> 2.-Conocimientos concretos aplicado: </option>   
+		<option value="1">Solución de problemas</option>
+		<option value="2">Operaciones básicas para atender eventualidades en cajas</option>
+	    <option value="3">Aplicaciones básicas psicológicas para dirigirse al cliente</option>
+		<option value="4">Atención y soluciones para el cliente</option>
+	</select>
+</div>
+	<label> 2.-Conocimientos concretos aplicado: </label>
+	<select class="browser-default">   
+		<option value="" disabled selected>Seleccione una opción</option>
+    	<option value="1">Solución de problemas</option>
+    	<option value="2">Operaciones básicas para atender eventualidades en cajas</option>
+    	<option value="3">Aplicaciones básicas psicológicas para dirigirse al cliente</option>
+     	<option value="4">Atención y soluciones para el cliente</option>
+	</select>
+
+
+<div class="input-field col s12">
+	<select multiple>
+		<option value="" disabled selected> 3.-Conocimiento de ingles: </option>   
+	    <option value="1">Básico</option>
+	    <option value="2">Intermedio</option>
+	    <option value="3">Avanzado</option>
+   		<option value="4">Nada</option>
+	</select>
+</div>
+	<label>3.-Conocimiento de ingles: </label>
+  	<select class="browser-default">
+  		<option value="" disabled selected>Seleccione una opción</option>
+    	<option value="1">Básico</option>
+    	<option value="2">Intermedio</option>
+    	<option value="3">Avanzado</option>
+   		<option value="4">Nada</option>
+	</select>
+
+
+
+<div class="input-field col s12">
+	<select multiple>
+		<option value="" disabled selected> 4.-Experiencia en puesto similares: </option>   
+		<option value="1">Auxiliar especializado en cajas</option>
+    	<option value="2">Auxiliar </option>
+    	<option value="3">Subjefe en cajas</option>
+   		<option value="4">Sin experiencia</option>
+	</select>
+</div>
+	<label> 4.-Experiencia en puesto similares: </label>
+  	<select class="browser-default">   
+  		<option value="" disabled selected>Seleccione una opción</option>
+    	<option value="1">Auxiliar especializado en cajas</option>
+    	<option value="2">Auxiliar </option>
+    	<option value="3">Subjefe en cajas</option>
+   		<option value="4">Sin experiencia</option>
+	</select>
+
+<div class="input-field col s12">
+	<select multiple>
+ 		<option value="" disabled selected> 5.-Conocimientos prácticos: </option>   
+    	<option value="1">Control de personal</option>
+    	<option value="2">Constante apego a políticas </option>
+    	<option value="3">Estrategia en distribución del personal según la carga de trabajo </option>
+   		<option value="4">Facilidad de palabra ante situaciones con el cliente.</option>
+	</select>
+</div>
+	<label> 5.-Conocimientos prácticos: </label>
+  	<select class="browser-default">   
+  		<option value="" disabled selected>Seleccione una opción</option>
+    	<option value="1">Control de personal</option>
+    	<option value="2">Constante apego a políticas </option>
+    	<option value="3">Estrategia en distribución del personal según la carga de trabajo </option>
+   		<option value="4">Facilidad de palabra ante situaciones con el cliente.</option>
+	</select>
+
+<div class="input-field col s12">
+	<select multiple>
+	    <option value="" disabled selected> 6.-Edad  </option>
+	    <option value="1">21 a 30</option>
+	    <option value="2">31 a 40</option>
+	    <option value="3">41 a 50</option>
+	</select>
+</div>
+	<label> 6.-Edad: </label>
+	<select class="browser-default">
+		<option value="" disabled selected>Seleccione una opción</option>
+	    <option value="1">21 a 30</option>
+	    <option value="2">31 a 40</option>
+	    <option value="3">41 a 50</option>
+	</select>
+
+		<div class="right">
+			<button class="btn waves-effect teal darken-4" type="submit">Enviar
+			  	<i class="fas fa-sign-in-alt left"></i>
+			 </button>
+		</div>
+	</form>
+</div>
+{% endblock %}

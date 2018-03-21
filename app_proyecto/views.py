@@ -70,3 +70,9 @@ class form_persona_domicilio(CreateView):
     model = models.DireccionPersonas
     fields = "__all__"
     success_url = reverse_lazy("login")
+
+class form_caja(CreateView):
+    template_name= "app_proyecto/form_caja.html"
+    model = models.AreasTrabajo
+    fields = "__all__"
+    success_url = reverse_lazy("login")
