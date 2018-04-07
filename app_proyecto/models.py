@@ -7,7 +7,7 @@ class PuestoEmpleado(models.Model):
 	Nombre = models.CharField(max_length = 150)
 
 	def __str__(self):
-		return  self.Nombre
+		return  str(self.IdPuesto) + " " + self.Nombre
 
 class Personas(models.Model):
 	Curp = models.CharField(max_length = 20, primary_key = True)
@@ -31,6 +31,9 @@ class Personas(models.Model):
         ("Universidad",'Universidad'),
     )
 
+	estado_civil=models.CharField(choices=Edo_Civil,max_length=50)
+	nivel_escolar = models.CharField(max_length=50, choices=Escolaridad)
+
 	def __str__(self):
 		return  self.Curp
 
@@ -49,7 +52,7 @@ class Empleados(models.Model):
 	Curp = models.ForeignKey('Personas', on_delete = models.CASCADE,)
 	Id_Puesto = models.ForeignKey( 'PuestoEmpleado', on_delete = models.CASCADE,)
 	contraseña = models.CharField(max_length=50)
-
+	estado = models.BooleanField(default=True)
 	def __str__(self):
 		return str(self.No_Empleado)
 
@@ -65,6 +68,8 @@ class Examen(models.Model):
 	Id_Examen = models.CharField(max_length = 50, primary_key=True)
 	Nombre = models.CharField(max_length = 150)
 	Id_Area = models.ForeignKey('AreasTrabajo', on_delete = models.CASCADE,)
+	puntaje_minimo = models.IntegerField()
+	puntaje_maximo = models.IntegerField()
 
 	def __str__(self):
 		return  self.Nombre

@@ -15,8 +15,12 @@
 	{% block estilos %}
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="{% static 'app_proyecto/fontawesome/css/fontawesome-all.css' %}" />
+
 	<link rel="stylesheet" type="text/css" href="{% static 'app_proyecto/materialize/css/materialize.min.css' %}" />
+
 	<link rel="stylesheet" type="text/css" href="{% static 'app_proyecto/style_presonalizada.css' %}" />
+	<script src="{% static 'app_proyecto/jquery-3.2.1.min.js' %}"></script>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	{% endblock %}	
 </head>
@@ -68,7 +72,11 @@
 		  $(document).ready(function() {
 	     	// Initialize collapse button
   			$(".button-collapse").sideNav();
-		  });
+		  });     
+
+		$(document).ready(function() {
+		$('select').material_select();
+		}); 
 	</script>
 	{% endblock %}	
 </body>

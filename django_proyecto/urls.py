@@ -19,4 +19,11 @@ urlpatterns = [
    # 1.- Crear a la persona
 	path('form_persona/', views.form_persona.as_view(), name = 'form_persona'),
 	path('form_persona_domicilio/', views.form_persona_domicilio.as_view(), name = 'form_persona_domicilio'),
+
+    #2.- Json
+    path("json_supervisor/", views.json_supervisor),
+
+
+    #Examenes
+    path('examen_jefe_abarrotes/', views.examen_jefe_abarrotes, name = 'examen_jefe_abarrotes'),
 ]

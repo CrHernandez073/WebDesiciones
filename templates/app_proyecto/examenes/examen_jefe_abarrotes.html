@@ -1,0 +1,83 @@
+{% extends 'app_proyecto/base.html' %}
+
+{% block titulo %}Registro{% endblock %} 
+
+{% block titulo_navbar %}TEST Jefe Abarrotes{% endblock %}
+
+{% block contenido %}
+	<div class="container" style="width: 50%;">
+	<form method="post">
+	    {% csrf_token %}
+		 <div class="row">
+		 	<div class="input-field col s12">
+	          <i class="fas fa-key prefix"></i>
+	          <input id="icon_prefix" type="text" class="validate" maxlength="20" name="curp" required="true" autocomplete="off" autofocus="">
+	          <label for="icon_prefix">Curp</label>
+    		</div>
+			<div class="col s4">
+        		<select name="edad" required="" id="edad">
+				  <option value="" selected="">Edad</option>
+				  <option value="20">21 a 30</option>
+				  <option value="30">31 a 40</option>
+				  <option value="25">41 a 50</option>
+				</select>
+        	</div>
+        	<div class="col s4">
+        		<select name="ingles" required="" id="ingles">
+				  <option value="" selected="">Nivel de Ingles</option>
+				  <option value="5">Basico</option>
+				  <option value="10">Intermedio</option>
+				  <option value="15">Avanzado</option>
+				  <option value="0">Ninguno</option>
+				</select>
+        	</div>
+			<div class="col s4">
+        		<select name="estudios" required="" id="estudios">
+				  <option value="" selected="">Nivel de estudios</option>
+				  <option value="5">Secundaria</option>
+				  <option value="10">Preparatoria</option>
+				  <option value="15">Universidad</option>
+				</select>
+        	</div>
+        	<!--30 + 10 + 10 +  10 + 20 + 55-->
+			<div class="input-field col s12">
+			    <select name = "consultas" multiple required id="consultas">
+			      <option value="" disabled selected></option>
+			      <option value="5">Operaciones matemáticas básicas</option>
+			      <option value="5">Control de Stock</option>
+			      <option value="5">Uso de sistema a nivel de consultas.</option>
+			    </select>
+			    <label>Conocimientos concretos aplicados</label>
+			</div>
+			<div class="input-field col s12">
+			    <select name="experiencia" multiple required id = "experiencia">
+			      <option value="" disabled selected></option>
+			      <option value="5">Auxiliar</option>
+			      <option value="10">Auxiliar especilizado</option>
+			      <option value="5">Auxiliar A</option>
+			      <option value="10">Subjefe</option>
+			    </select>
+			    <label>Experiencia en puestos similares</label>
+			</div>
+			<div class="input-field col s12">
+			    <select name="conocimientos" multiple required id = "conocimientos">
+			      <option value="" disabled selected></option>
+			      <option value="15">Supervisión y coordinación de empleados</option>
+			      <option value="10">Demostradoras y promotores</option>
+			      <option value="10">Conocimiento del producto</option>
+			      <option value="10">Contacto con proveedores</option>
+			      <option value="10">Habilidad y destreza en el manejo de los productos.</option>
+			    </select>
+			    <label>Conocimientos prácticos</label>
+			</div>
+		</div>
+		<div class="right">
+			<button class="btn waves-effect teal darken-4" type="submit">Enviar
+		  	<i class="fas fa-sign-in-alt left"></i>
+		  </button>
+		</div>
+	</form>
+	<br>
+	{{Sumatoria}}
+	</div>
+{% endblock %}

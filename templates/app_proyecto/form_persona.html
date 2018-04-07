@@ -14,52 +14,77 @@
 	          <label for="icon_prefix">Curp</label>
         </div>
 
-         <div class="input-field col s12">
-	          <i class="fas fa-address-card prefix"></i>
+		 <div class="row">
+			<div class="input-field col s4">
+			  <i class="fas fa-address-card prefix"></i>
 
-	          <input id="icon_prefix" type="text" class="validate" maxlength="150" name="Nombres" required="true" autocomplete="off">
-	          
-	          <label for="icon_prefix">Nombre</label>
-        </div>
+			  <input id="icon_prefix" type="text" class="validate" maxlength="150" name="Nombres" required="true" autocomplete="off">
+			  
+			  <label for="icon_prefix">Nombre</label>
+			</div>
+			<div class="input-field col s4">
+			  <i class="fas fa-address-card prefix"></i>
 
-         <div class="input-field col s12">
-	          <i class="fas fa-address-card prefix"></i>
+			  <input id="icon_prefix" type="text" class="validate" maxlength="150" name="Ap_Paterno" required="true" autocomplete="off">
+			  
+			  <label for="icon_prefix">Apellido Paterno</label>
+			</div>
 
-	          <input id="icon_prefix" type="text" class="validate" maxlength="150" name="Ap_Paterno" required="true" autocomplete="off">
-	          
-	          <label for="icon_prefix">Apellido Paterno</label>
-        </div>
+			<div class="input-field col s4">
+			  <i class="fas fa-address-card prefix"></i>
 
-         <div class="input-field col s12">
-	          <i class="fas fa-address-card prefix"></i>
+			  <input id="icon_prefix" type="text" class="validate" name="Ap_Materno" maxlength="100" required="true" autocomplete="off">
+			  
+			  <label for="icon_prefix">Apellido Materno</label>
+			</div>
+		
+			<div class="input-field col s6">
+			  <i class="fas fa-address-card prefix"></i>
 
-	          <input id="icon_prefix" type="text" class="validate" name="Ap_Materno" maxlength="100" required="true" autocomplete="off">
-	          
-	          <label for="icon_prefix">Apellido Materno</label>
-        </div>
+			  <input id="icon_prefix" type="text" class="validate" name="NSS" maxlength="100" required="true" autocomplete="off">
+			  
+			  <label for="icon_prefix">Número de seguro social</label>
+			</div>
 
-         <div class="input-field col s12">
-	          <i class="fas fa-address-card prefix"></i>
+			<div class="input-field col s6">
+			  <i class="fas fa-address-card prefix"></i>
 
-	          <input id="icon_prefix" type="text" class="validate" name="NSS" maxlength="100" required="true" autocomplete="off">
-	          
-	          <label for="icon_prefix">Número de seguro social</label>
-        </div>
-
-         <div class="input-field col s12">
-	          <i class="fas fa-address-card prefix"></i>
-
-	          <input id="icon_prefix" type="text" class="validate" name="RFC" maxlength="40" required="true" autocomplete="off">
-	          
-	          <label for="icon_prefix">RFC</label>
-        </div>
-
+			  <input id="icon_prefix" type="text" class="validate" name="RFC" maxlength="40" required="true" autocomplete="off">
+			  
+			  <label for="icon_prefix">RFC</label>
+			</div>
+		</div>
          <div class="input-field col s12">
 	          <i class="fas fa-birthday-cake prefix"></i>
 
 	          <input id="icon_prefix" type="date" class="validate" name="Fecha_Nacimiento" maxlength="40" required="true" autocomplete="off">
 	          
 	          <label for="icon_prefix"></label>
+        </div>
+        <div class="row">
+        	<div class="col s6">
+        		<select name="estado_civil" required="" id="id_estado_civil">
+				  <option value="" selected="">Estado Civil</option>
+				  <option value="Casado">Casado</option>
+				  <option value="Soltero">Soltero</option>
+				  <option value="Divorciado">Divorciado</option>
+				  <option value="Viudo">Viudo</option>
+				  <option value="Comprometido">Comprometido</option>
+				</select>
+        	</div>
+        	<div class="col s6">
+        		<select name="nivel_escolar" required="" id="id_nivel_escolar">
+				  <option value="" selected="">Escolaridad</option>
+
+				  <option value="Primaria">Primaria</option>
+
+				  <option value="Secundaria">Secundaria</option>
+
+				  <option value="Preparatoria">Preparatoria</option>
+
+				  <option value="Universidad">Universidad</option>
+				</select>
+        	</div>
         </div>
 		<div class="right">
 			<button class="btn waves-effect teal darken-4" type="submit">Enviar
