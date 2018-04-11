@@ -16,7 +16,7 @@ def login(request):
 	#SE EJECUTARÁ ESTA ACCION SI SE ACCEDE A LA PAGINA DEL MODO POST
 	if request.method == "POST":
 		#Obtiene los elementos de la base de datos
-		datos = models.Empleados.objects.get(Curp=request.POST.get('f_curp'))
+		datos = models.Empleado.objects.get(Curp=request.POST.get('f_curp'))
 		if datos.contraseña == request.POST.get('f_contraseña'):
 
 			#SE CREAN VARIABLES DE SESION
@@ -51,15 +51,15 @@ def inicio_gerente(request):
 
 class consulta_empleados(ListView):
     template_name= "app_proyecto/gerente/consulta_empleados.html"
-    queryset = models.Empleados.objects.filter(Id_Puesto = 0)
+    queryset = models.Empleado.objects.filter(Id_Puesto = 0)
 
 class consulta_supervisores(ListView):
     template_name= "app_proyecto/gerente/consulta_supervisores.html"
-    queryset = models.Empleados.objects.filter(Id_Puesto = 1)
+    queryset = models.Empleado.objects.filter(Id_Puesto = 1)
 
 class consulta_gerentes(ListView):
     template_name= "app_proyecto/gerente/consulta_gerentes.html"
-    queryset = models.Empleados.objects.filter(Id_Puesto = 2)
+    queryset = models.Empleado.objects.filter(Id_Puesto = 2)
 
 #FORMULARIOS OBLIGATORIOS
 class form_persona(CreateView):
@@ -75,7 +75,7 @@ class form_persona_domicilio(CreateView):
     success_url = reverse_lazy("login")
 
 def json_supervisor(request):
-	data = serializers.serialize('json', models.Empleados.objects.filter(Id_Puesto = 2))
+	data = serializers.serialize('json', models.Empleado.objects.filter(Id_Puesto = 2))
 	return HttpResponse(data, "application/json")
 
 
@@ -117,20 +117,32 @@ def examen_jefe_abarrotes(request):
 			
 			resultado_examen = puntaje_edad + puntaje_ingles + puntaje_estudios + puntale_consulta + puntale_experiencia + puntale_conocimiento
 
-			contexto = {'Sumatoria':resultado_examen}
-			
-			#Guardando el examenrealizado 
-			p = ExamenPersona(Curp=curp, Id_Examen=id_examen)
-			p.save(force_insert=True)
+			#1. Guardando el examenrealizado 
+			p = models.ExamenPersonas(Curp=curp, Id_Examen=id_examen)
+			p.save()
+
+			#2. Extraer "num_examen"
+			detalle = models.ExamenPersonas.objects.get(Curp=curp, Id_Examen="Examen Jefe Abarrotes")
+			num_examen = detalle.Num_Examen
 
 			if resultado_examen >= minimo:
-				print("")
-			else:
-				print(")")
+				p = models.ResultadoExamenes(Num_Examen=num_examen, Puntaje=resultado_examen, Dictamen = "Aceptado")
+				p.save()
 
-			return render(request, "app_proyecto/examenes/examen_jefe_abarrotes.html", contexto)
+				e = models.Empleado(contraseña = "123")
+				e.Curp = curp
+				e.Id_Puesto = "Jefe de abarrotes"
+				e.save()
+
+				contexto = {'resultado':"Aceptado", "r_color": "green"}
+				return render(request, "app_proyecto/examenes/examen_jefe_abarrotes.html", contexto)
+			else:
+				p = models.ResultadoExamenes(Num_Examen=num_examen, Puntaje=resultado_examen, Dictamen = "Rechazado")
+				p.save(force_insert=True)
+				contexto = {'resultado':"Suerte para la próxima bro :V", "r_color": "red"}
+				return render(request, "app_proyecto/examenes/examen_jefe_abarrotes.html", contexto)		
 		else:
-			contexto = {'Sumatoria':'ERRRO'}
+			contexto = {'Sumatoria':'ERROR'}
 			return render(request, "app_proyecto/examenes/examen_jefe_abarrotes.html", contexto)
 	else:
 		return render(request, "app_proyecto/examenes/examen_jefe_abarrotes.html")

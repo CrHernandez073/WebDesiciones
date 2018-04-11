@@ -1,6 +1,6 @@
 {% extends 'app_proyecto/base.html' %}
 
-{% block titulo %}Registro{% endblock %} 
+{% block titulo %}TEST Jefe Abarrotes{% endblock %} 
 
 {% block titulo_navbar %}TEST Jefe Abarrotes{% endblock %}
 
@@ -37,6 +37,7 @@
 				  <option value="5">Secundaria</option>
 				  <option value="10">Preparatoria</option>
 				  <option value="15">Universidad</option>
+				  <option value="0">Ninguno</option>
 				</select>
         	</div>
         	<!--30 + 10 + 10 +  10 + 20 + 55-->
@@ -46,6 +47,7 @@
 			      <option value="5">Operaciones matemáticas básicas</option>
 			      <option value="5">Control de Stock</option>
 			      <option value="5">Uso de sistema a nivel de consultas.</option>
+			      <option value="0">Ninguno</option>
 			    </select>
 			    <label>Conocimientos concretos aplicados</label>
 			</div>
@@ -56,6 +58,7 @@
 			      <option value="10">Auxiliar especilizado</option>
 			      <option value="5">Auxiliar A</option>
 			      <option value="10">Subjefe</option>
+			      <option value="0">Ninguno</option>
 			    </select>
 			    <label>Experiencia en puestos similares</label>
 			</div>
@@ -67,17 +70,58 @@
 			      <option value="10">Conocimiento del producto</option>
 			      <option value="10">Contacto con proveedores</option>
 			      <option value="10">Habilidad y destreza en el manejo de los productos.</option>
+			      <option value="0">Ninguno</option>
 			    </select>
 			    <label>Conocimientos prácticos</label>
 			</div>
 		</div>
 		<div class="right">
-			<button class="btn waves-effect teal darken-4" type="submit">Enviar
+			<button class="btn waves-effect teal darken-4" type="submit" disabled="true" id="btn_enviar">Enviar
 		  	<i class="fas fa-sign-in-alt left"></i>
 		  </button>
 		</div>
 	</form>
 	<br>
-	{{Sumatoria}}
+
+	<div style="background-color: {{r_color}}; color: white; text-align: center;">
+		<h4>{{resultado}}</h4>
+	</div> 
 	</div>
+
+<script>
+	var supervisor_id="";
+	var password_supervisor="";
+		
+	$(document).ready(function(){
+		$.ajax({
+			type: "GET",
+			contentType: "json",
+			dateType: "json",
+			url:"/json_supervisor/",
+			success:function(response){
+				for (var i = 0; i < response.length; i++) {
+					supervisor_id = response[i].pk
+					password_supervisor = response[i].fields.contraseña
+				}
+
+				var txt_supervisor=prompt('Solicita al supervisor que ingrese los datos');
+				if (txt_supervisor==supervisor_id){
+				   
+				   txt_password=prompt('Ingresa:');
+				    if (txt_password==password_supervisor){
+				    	document.getElementById("btn_enviar").disabled = false;
+				     }
+				    else {
+						alert("Error, datos incorrectos."); 
+						location.reload();        
+			 	   }
+				}
+				else {
+					alert("Error, datos incorrectos.");
+					location.reload(); 
+				}
+			}
+		});
+	});
+</script>
 {% endblock %}
