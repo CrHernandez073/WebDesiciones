@@ -80,7 +80,7 @@ class ExamenPersonas(models.Model):
 	Fecha_Elaborado = models.DateField(auto_now=True)
 
 	def __str__(self):
-		return  str(self.Num_Examen) + ", Curp: " + self.Curp
+		return  str(self.Num_Examen) + ", Curp: " + str(self.Curp.Curp)
 
 class ResultadoExamenes(models.Model):
 	Num_Examen = models.ForeignKey(ExamenPersonas, on_delete=models.CASCADE)
@@ -88,7 +88,7 @@ class ResultadoExamenes(models.Model):
 	Dictamen=models.CharField(max_length=50)
 
 	def __str__(self):
-		return self.Num_Examen
+		return str(self.Num_Examen)
 
 
 # Enrutamiento estatico: con este enrutamiento el enrutador es ordenado por el administrador de la red, 

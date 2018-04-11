@@ -76,7 +76,7 @@
 			</div>
 		</div>
 		<div class="right">
-			<button class="btn waves-effect teal darken-4" type="submit" disabled="true" id="btn_enviar">Enviar
+			<button class="btn waves-effect teal darken-4" type="submit" id="btn_enviar">Enviar
 		  	<i class="fas fa-sign-in-alt left"></i>
 		  </button>
 		</div>
@@ -89,39 +89,21 @@
 	</div>
 
 <script>
-	var supervisor_id="";
-	var password_supervisor="";
-		
-	$(document).ready(function(){
-		$.ajax({
-			type: "GET",
-			contentType: "json",
-			dateType: "json",
-			url:"/json_supervisor/",
-			success:function(response){
-				for (var i = 0; i < response.length; i++) {
-					supervisor_id = response[i].pk
-					password_supervisor = response[i].fields.contraseña
-				}
 
-				var txt_supervisor=prompt('Solicita al supervisor que ingrese los datos');
-				if (txt_supervisor==supervisor_id){
-				   
-				   txt_password=prompt('Ingresa:');
-				    if (txt_password==password_supervisor){
-				    	document.getElementById("btn_enviar").disabled = false;
-				     }
-				    else {
-						alert("Error, datos incorrectos."); 
-						location.reload();        
-			 	   }
-				}
-				else {
-					alert("Error, datos incorrectos.");
-					location.reload(); 
-				}
-			}
-		});
-	});
+var txt_supervisor = prompt('Solicita al supervisor que ingrese los datos');
+	if (txt_supervisor=={{No_Empleado}}){
+	   
+	   txt_password=prompt('Ingresa:');
+	    if (txt_password=={{Contraseña}}){
+	     }
+	    else {
+			alert("Error, datos incorrectos."); 
+			location.reload();        
+ 	   }
+	}
+	else {
+		alert("Error, datos incorrectos.");
+		location.reload(); 
+	}
 </script>
 {% endblock %}

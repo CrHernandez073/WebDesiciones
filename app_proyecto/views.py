@@ -118,7 +118,7 @@ def examen_jefe_abarrotes(request):
 			resultado_examen = puntaje_edad + puntaje_ingles + puntaje_estudios + puntale_consulta + puntale_experiencia + puntale_conocimiento
 
 			#1. Guardando el examenrealizado 
-			p = models.ExamenPersonas(Curp=curp, Id_Examen=id_examen)
+			p = models.ExamenPersonas(Curp=models.Personas.objects.get(Curp=curp), Id_Examen=models.Examen.objects.get(Id_Examen=id_examen))
 			p.save()
 
 			#2. Extraer "num_examen"
@@ -126,23 +126,23 @@ def examen_jefe_abarrotes(request):
 			num_examen = detalle.Num_Examen
 
 			if resultado_examen >= minimo:
-				p = models.ResultadoExamenes(Num_Examen=num_examen, Puntaje=resultado_examen, Dictamen = "Aceptado")
+				p = models.ResultadoExamenes(Num_Examen=models.ExamenPersonas.objects.get(Num_Examen=num_examen), Puntaje=resultado_examen, Dictamen = "Aceptado")
 				p.save()
 
-				e = models.Empleado(contraseña = "123")
-				e.Curp = curp
-				e.Id_Puesto = "Jefe de abarrotes"
+				e = models.Empleado(Curp=models.Personas.objects.get(Curp=curp), Id_Puesto=models.PuestoEmpleado.objects.get(Id_Puesto="Jefe de abarrotes"))
 				e.save()
 
 				contexto = {'resultado':"Aceptado", "r_color": "green"}
 				return render(request, "app_proyecto/examenes/examen_jefe_abarrotes.html", contexto)
 			else:
-				p = models.ResultadoExamenes(Num_Examen=num_examen, Puntaje=resultado_examen, Dictamen = "Rechazado")
-				p.save(force_insert=True)
+				p = models.ResultadoExamenes(Num_Examen=models.ExamenPersonas.objects.get(Num_Examen=num_examen), Puntaje=resultado_examen, Dictamen = "Rechazado")
+				p.save()
 				contexto = {'resultado':"Suerte para la próxima bro :V", "r_color": "red"}
 				return render(request, "app_proyecto/examenes/examen_jefe_abarrotes.html", contexto)		
 		else:
 			contexto = {'Sumatoria':'ERROR'}
 			return render(request, "app_proyecto/examenes/examen_jefe_abarrotes.html", contexto)
 	else:
-		return render(request, "app_proyecto/examenes/examen_jefe_abarrotes.html")
+		supervisor = models.Empleado.objects.get(Id_Puesto = "Supervisor")
+		contexto = {"No_Empleado": supervisor.No_Empleado, "Contraseña": supervisor.contraseña}
+		return render(request, "app_proyecto/examenes/examen_jefe_abarrotes.html", contexto)
