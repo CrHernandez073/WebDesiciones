@@ -53,7 +53,7 @@ class Empleado(models.Model):
 	contraseña = models.CharField(max_length=50)
 	estado = models.BooleanField(default=True)
 	def __str__(self):
-		return str(self.No_Empleado) + ": " + self.Curp.Curp
+		return self.Curp.Curp + ", \t" + str(self.Id_Puesto)
 
 class AreasTrabajo(models.Model):
 	Id_Area = models.CharField(max_length = 20, primary_key = True)

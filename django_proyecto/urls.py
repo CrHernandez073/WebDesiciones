@@ -26,4 +26,5 @@ urlpatterns = [
 
     #Examenes
     path('examen_jefe_abarrotes/', views.examen_jefe_abarrotes, name = 'examen_jefe_abarrotes'),
+    path('examen_cajas/', views.examen_cajas, name = 'examen_cajas'),
 ]

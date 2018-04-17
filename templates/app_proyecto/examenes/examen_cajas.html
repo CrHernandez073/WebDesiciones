@@ -1,8 +1,8 @@
 {% extends 'app_proyecto/base.html' %}
 
-{% block titulo %}TEST Jefe Abarrotes{% endblock %} 
+{% block titulo %}TEST Jefe Cajas{% endblock %} 
 
-{% block titulo_navbar %}TEST Jefe Abarrotes{% endblock %}
+{% block titulo_navbar %}TEST Jefe Cajas{% endblock %}
 
 {% block contenido %}
 	<div class="container" style="width: 50%;">
@@ -43,9 +43,12 @@
 			<div class="input-field col s12">
 			    <select name = "consultas" multiple required id="consultas">
 			      <option value="" disabled selected></option>
-			      <option value="5">Operaciones matemáticas básicas</option>
-			      <option value="5">Control de Stock</option>
-			      <option value="5">Uso de sistema a nivel de consultas.</option>
+				  <option value="5">Leer</option>
+				  <option value="5">Escribir</option>
+				  <option value="5">Solución de problemas</option>
+				  <option value="5">Operaciones básicas para atender eventualidades en cajas</option>
+				  <option value="5">Aplicaciones básicas psicológicas para dirigirse al cliente</option>
+				  <option value="5">Atención y soluciones para el cliente</option>
 			      <option value="0">Ninguno</option>
 			    </select>
 			    <label>Conocimientos concretos aplicados</label>
@@ -53,25 +56,12 @@
 			<div class="input-field col s12">
 			    <select name="experiencia" multiple required id = "experiencia">
 			      <option value="" disabled selected></option>
-			      <option value="5">Auxiliar</option>
-			      <option value="10">Auxiliar especilizado</option>
+			      <option value="10">Auxiliar especilizado en cajas</option>
 			      <option value="5">Auxiliar A</option>
-			      <option value="10">Subjefe</option>
+			      <option value="15">Subjefe en cajas</option>
 			      <option value="0">Ninguno</option>
 			    </select>
 			    <label>Experiencia en puestos similares</label>
-			</div>
-			<div class="input-field col s12">
-			    <select name="conocimientos" multiple required id = "conocimientos">
-			      <option value="" disabled selected></option>
-			      <option value="15">Supervisión y coordinación de empleados</option>
-			      <option value="10">Demostradoras y promotores</option>
-			      <option value="10">Conocimiento del producto</option>
-			      <option value="10">Contacto con proveedores</option>
-			      <option value="10">Habilidad y destreza en el manejo de los productos.</option>
-			      <option value="0">Ninguno</option>
-			    </select>
-			    <label>Conocimientos prácticos</label>
 			</div>
 		</div>
 		<div class="right">
